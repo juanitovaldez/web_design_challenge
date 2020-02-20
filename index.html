@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Landing page</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/base.css"> 
+
+    <body>   
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <a class="navbar-brand" href="index.html">Jon's Viz</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Viz">Viz</a></li>
+                
+                <li class="nav-item"><a class="nav-link" href="#Data">Data</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Comparison</a></li>
+            </ul>
+          </nav>
+
+        <!-- Background Title section -->
+        <header class="masthead">
+            <div class="container d-flex h-100 align-items-center">
+                <div class="mx-auto text-center">
+                  <h1 class="mx-auto my-0 text-uppercase">Do Earthquakes emit measurable gasses?</h1>
+                  <h2 class="text-white-50 mx-auto mt-2 mb-5">A few hackish attempts at visualizations.</h2>
+                </div>
+              </div>
+        </header>
+
+        <!-- About -->
+        <section id="about" class="about-section", text center>
+            <div class="container">
+                <div class="row">
+                  <div class="col-lg-8 mx-auto">
+                    <h2 class="text-white mb-4">A Cocktail of Gasses</h2>
+                    <p class="text-white-50">A selection of promising pollutant classes were tested and sampled for 7 days before and after each earthquake event.
+                      The pollutants under study are sulfur dioxide, Nitrous Oxide. For each class a jitter column plot and violin plot were used to visualize the distribution
+                      of each stations reading on each day. Then a Kolmogorov-Schmirnov matrix was calculated to test if each pairwise date combo is distributed differently from it's partner. 
+                      Our results were inconclusive.</p>
+                    </div>
+                </div>            
+              </div>
+        </section>
+
+        <!-- Graphs -->
+        <!-- IMG for the lightbox too -->
+        <section id='Viz', class="about-section" text center>
+          <div class="container">
+            <div class="row">
+              <!-- Kolmogorov-Smirnov -->
+              <div class="col mx-auto">
+                <h2 class="text-white mb-4">Kolmogorov-Schmirnov Matrix</h2>
+                <p class="text-white-50">The Kolmogorov-Smirnov two sample test statistic can be defined as follows:</p>
+                <p class="text-white-50">H0:	The two samples come from a common distribution.</p>
+                <p class="text-white-50">Ha:	The two samples do not come from a common distribution.</p>
+                <p class="text-white-50">Test Statistic:	D=|E1(i)−E2(i)| where E1 and E2 are the empirical distribution functions for the two samples.</p>
+                <p class="text-white-50">The hypothesis regarding the distributional form is rejected if the test statistic, D, is greater than the critical value.</p>
+                <p class="text-white-50"> For a  95% critical value (alpha = 0.05) for the K-S two sample test statistic we reject H0</p>
+                <p class="text-white-50"></p>
+                  
+                  
+                  
+                  
+                  </p>
+              </div>
+              <!-- Jitter Plot  -->
+              <div class="col mx-auto">
+                <h2 class="text-white mb-4">Strip Plot</h2>
+                <p class="text-white-50">The strip plot should visually confirum what we find with the two sample KS test. Where the value in the KS matrix is >= 0.05 we may
+                  be able to see a difference in the distrubution at the higher end. The density of the points makes this difficult but the effect is observable in a few cases where the alpha
+                  is much larger than the threshold for rejection. We have alot of noise at the bottom end of the measurement spectrum. Thinning out our station selection to exclude farther 
+                  monitoring sights could help clear this issue up.
+                </p>
+              </div>
+              <!-- Violin Plot -->
+              <div class="col mx-auto">
+                <h2 class="text-white mb-4">Violin Plot</h2>
+                <p class="text-white-50">The violing plot supports the strip plot by allowing another vantage point on how the distribution changes with time. Once again, we should see
+                  subtle variations in the shape of each day, especially so where the KS-alpha is much greater than the threshold.
+                </p>
+              </div>
+            </div>            
+          </div>
+          <div class="card-deck">
+            <!-- c0 KS M -->
+            <div class="row">
+              <div class="card" style="width:400px">
+                <img id=c0ks class="card-img-top" src="img/Carbon monoxide_ks_plot.svg" alt="cO Kolmogorov-Schmirnov" onclick="openModal();currentSlide(1)">
+                <div class="card-body">
+                  <h4 class="card-title">cO KS Matrix</h4>
+                  <p class="card-text text-white-50">We can see that two days prior to and after the event may come from a different distribution.
+                    This could imply that some physical process is changing the magnitude of the measurement signals.
+                  </p>
+                </div>
+              </div>
+              <!-- c0 Jitter -->
+              <div class="card" style="width:400px">
+                <img class="card-img-top" src="img/Carbon monoxide_jitterplo.png" alt="cO Jitter Plot" onclick="openModal();currentSlide(2)">
+                <div class="card-body">
+                  <h4 class="card-title">cO Emmisions Colored by Station</h4>
+                  <p class="card-text text-white-50">It appears that density of high ppb observations is increasing for some stations immediately preceding
+                    and continuing for 5 days after an event. The density of observations makes this visualization rather innefective.</p>
+                  
+                </div>
+              </div>
+              <!-- c0 Vio -->
+              <div class="card" style="width:400px">
+                <img class="card-img-top" src="img/Carbon monoxide_violinplot.svg" alt="cO Violin Plot" onclick="openModal();currentSlide(3)">
+                <div class="card-body">
+                  <h4 class="card-title">cO KS Violin</h4>
+                  <p class="card-text text-white-50"></p>Observe how the distribution has shifted by day 6 and 7 after the event. Perhaps there is a lag or the system operats on longer timescales than we are checking.</p>
+                
+                </div>
+              </div>
+            </div>
+            
+            <!-- No2 KS M -->
+            <div class="row">
+              <div class="card" style="width:400px">
+                <img class="card-img-top" src="img/Nitrogen dioxide (NO2)_ks_plot.svg" alt="NO2 Kolmogorov-Schmirnov" onclick="openModal();currentSlide(4)">
+                
+                <div class="card-body">
+                  <h4 class="card-title">NO2 KS Matrix</h4>
+                  <p class="card-text text-white-50">We can see that two days prior to and after the event may come from a different distribution.
+                    This could imply that some physical process is changing the magnitude of the measurement signals.
+                  </p>
+                </div>
+              </div>
+              <!-- NO2 Jitter -->
+              <div class="card" style="width:400px">
+                <img class="card-img-top" src="img/Nitrogen dioxide (NO2)_jitterplo.png" alt="NO2 Jitter Plot" onclick="openModal();currentSlide(5)">
+                <div class="card-body">
+                  <h4 class="card-title">NO2 Emmisions Colored by Station</h4>
+                  <p class="card-text text-white-50">It appears that density of high pp2 observations is increasing for some stations immediately preceding
+                    and continuing for 5 days after an event. The density of observations makes this visualization rather innefective.</p>
+                  
+                </div>
+              </div>
+              <!-- NO2 Vio -->
+              <div class="card" style="width:400px">
+                <img class="card-img-top" src="img/Nitrogen dioxide (NO2)_violinplot.svg" alt="NO2 Violin Plot" onclick="openModal();currentSlide(6)">
+                <div class="card-body">
+                  <h4 class="card-title">NO2 KS Violin</h4>
+                  <p class="card-text text-white-50"></p>Observe how the distribution has shifted by day 6 and 7 after the event. Perhaps there is a lag or the system operats on longer timescales than we are checking.</p>
+                </div>
+              </div>
+            </div>
+
+              <!-- Ozone KS M -->
+              <div class="row">
+                <div class="card" style="width:400px">
+                  <img class="card-img-top" src="img/Ozone_ks_plot.svg" alt="Ozone Kolmogorov-Schmirnov" onclick="openModal();currentSlide(7)">
+
+                  <div class="card-body">
+                    <h4 class="card-title">Ozone KS Matrix</h4>
+                    <p class="card-text text-white-50">We can see that two days prior to and after the event may come from a different distribution.
+                      This could imply that some physical process is changing the magnitude of the measurement signals.
+                    </p>
+                  </div>
+                </div>
+                <!-- Ozone Jitter -->
+                <div class="card" style="width:400px">
+                  <img class="card-img-top" src="img/Ozone_jitterplo.png" alt="Ozone Jitter Plot" onclick="openModal();currentSlide(8)">
+                  <div class="card-body">
+                    <h4 class="card-title">Ozone Emmisions Colored by Station</h4>
+                    <p class="card-text text-white-50">It appears that density of high pp2 observations is increasing for some stations immediately preceding
+                      and continuing for 5 days after an event. The density of observations makes this visualization rather innefective.</p>
+                    
+                  </div>
+                </div>
+                <!-- Ozone Vio -->
+                <div class="card" style="width:400px">
+                  <img class="card-img-top" src="img/Ozone_violinplot.svg" alt="Ozone Violin Plot" onclick="openModal();currentSlide(9)">
+                  <div class="card-body">
+                    <h4 class="card-title">Ozone KS Violin</h4>
+                    <p class="card-text text-white-50"></p>Observe how the distribution has shifted by day 6 and 7 after the event. Perhaps there is a lag or the system operats on longer timescales than we are checking.</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        
+
+          <!-- The Modal/Lightbox -->
+          <div id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+              <!-- Carbon Monoxide -->
+              <div class="mySlides">
+                <div class="numbertext">1 /  9</div>
+                <img src="img/Carbon monoxide_ks_plot.svg" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">2 /  9</div>
+                <img src="img/Carbon monoxide_jitterplo.png" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">3 /  9</div>
+                <img src="img/Carbon monoxide_violinplot.svg" style="width:100%">
+              </div>
+              <!-- Nitrogeon Dioxide -->
+              <div class="mySlides">
+                <div class="numbertext">4 /  9</div>
+                <img src="img/Nitrogen dioxide (NO2)_ks_plot.svg" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">5 /  9</div>
+                <img src="img/Nitrogen dioxide (NO2)_jitterplo.png" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                  <div class="numbertext">6 /  9</div>
+                  <img src="img/Nitrogen dioxide (NO2)_violinplot.svg" style="width:100%">
+              </div>
+              <!-- Ozone -->
+              <div class="mySlides">
+                <div class="numbertext">7 /  9</div>
+                <img src="img/Ozone_ks_plot.svg" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">8 /  9</div>
+                <img src="img/Ozone_jitterplo.png" style="width:100%">
+              </div>
+
+              <div class="mySlides">
+                  <div class="numbertext">9 /  9</div>
+                  <img src="img/Ozone_violinplot.svg" style="width:100%">
+              </div>
+
+              <!-- Next/previous controls -->
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+              <!-- Caption text -->
+              <div class="caption-container">
+                <p id="caption"></p>
+              </div>
+
+              <!-- Thumbnail image controls -->
+              <div class="row">
+                <div class="column">
+                  <img class="demo cursor" src="img/Carbon monoxide_ks_plot.svg" onclick="currentSlide(1)" alt=" CO Kolmogorov-Schmirnov" style="width:100%">
+                </div>
+
+                <div class="column">
+                  <img class="demo cursor" src="img/Carbon monoxide_jitterplo.png" onclick="currentSlide(2)" alt="CO Emmissions by Day" style="width:100%">
+                </div>
+
+                <div class="column">
+                  <img class="demo cursor" src="img/Carbon monoxide_violinplot.svg" onclick="currentSlide(3)" alt="Co Emmission Distribution"  style="width:100%">
+                </div>
+              </div>
+                <!--NO2 -->
+                <div class="row">
+                  <div class="column">
+                    <img class="demo cursor" src="img/Nitrogen dioxide (NO2)_ks_plot.svg" onclick="currentSlide(4)" alt=" Nitrogen dioxide (NO2)Kolmogorov-Schmirnov" style="width:100%">
+                  </div>
+  
+                  <div class="column">
+                    <img class="demo cursor" src="img/Nitrogen dioxide (NO2)_jitterplo.png" onclick="currentSlide(5)" alt="Nitrogen dioxide (NO2)Emmissions by Day" style="width:100%">
+                  </div>
+  
+                  <div class="column">
+                    <img class="demo cursor" src="img/Nitrogen dioxide (NO2)_violinplot.svg" onclick="currentSlide(6)" alt="Nitrogen dioxide (NO2)Emmission Distribution"  style="width:100%">
+                  </div>
+                </div>
+                <!-- Ozone -->
+                <div class="row">
+                  <div class="column">
+                    <img class="demo cursor" src="img/Ozone_ks_plot.svg" onclick="currentSlide(7)" alt=" OzoneKolmogorov-Schmirnov" style="width:100%">
+                  </div>
+  
+                  <div class="column">
+                    <img class="demo cursor" src="img/Ozone_jitterplo.png" onclick="currentSlide(8)" alt="OzoneEmmissions by Day" style="width:100%">
+                  </div>
+  
+                  <div class="column">
+                    <img class="demo cursor" src="img/Ozone_violinplot.svg" onclick="currentSlide(9)" alt="OzoneEmmission Distribution"  style="width:100%">
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data -->
+        <section id='Data', class="about-section" text center>
+          <div class="container">
+            <div class="col"></div>
+              <h2 class="text-white" >Emmission Records</h2>
+              <p class="text-white-50">This data represents measurements from every air quality monitoring stationw within 100 miles of the epicenter of an earth quake of magnitude 5 or greater since 1980. A time window of 14 days around the event was chosen arbitraily  </p>            
+              <iframe src="data/aqs_sample.html" style="width: 100%; height:700px; padding-bottom: 1%; outline-color: rgba(16, 16, 16, 0);"></iframe>
+          </div>
+        </section>
+
+
+        
+    </body>
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/bw.js"></script>
+    </body>
+</html>
+
